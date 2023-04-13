@@ -1,0 +1,28 @@
+{% extends 'accounts/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Login' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+        text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="reg-form mb-3 form-label reg-form__input">
+        <h1>{% trans 'Enter you Account!' %}</h1>
+        <hr>
+        <form class="reg-form" method="post">
+            {% csrf_token %}
+            <p></p>
+            <div class="mb-3 form-label reg-form__input">
+                {{ form.as_p }}
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success" type="submit">{% trans 'Enter your account' %}</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

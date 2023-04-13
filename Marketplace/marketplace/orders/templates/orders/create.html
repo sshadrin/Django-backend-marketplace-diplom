@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% load cache %}
+{% block title %}
+    {% trans 'Order confirm' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(80, 200, 120);
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="reg-form mb-3 form-label reg-form__input">
+        <br>
+        <h3>{% trans 'Congratulations, your order has been placed. You can pick it up at the pick-up point or we will deliver it to you at the specified address.' %}</h3>
+        <hr>
+        <a href="{% url 'shop:category' %}" style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;">{% trans 'Back to shop' %}</a>
+    </div>
+{% endblock %}

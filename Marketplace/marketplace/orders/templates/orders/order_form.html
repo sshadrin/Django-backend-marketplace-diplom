@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Create Order' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(255, 236, 139);
+        }
+        h1 {
+            text-align: center;
+        }
+        .right {
+            padding-left: 550px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<font color="#0000FF"><h1>{% trans 'Create new order!' %}</h1></font>
+    <div class="reg-form mb-3 form-label reg-form__input">
+        <form class="reg-form" method="post">
+            {% csrf_token %}
+            <font color="#0000FF">{{ form.as_p }}</font>
+            <button class="btn btn-success" type="submit">{% trans 'Create order!' %}</button>
+        </form>
+    </div>
+    <p></p>
+{% endblock %}

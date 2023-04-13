@@ -1,0 +1,52 @@
+{% extends 'accounts/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'My account' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+        background-color: rgb(80, 200, 120);
+        text-align: center;
+        }
+        .right {
+            margin-right: 500px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+        <a href="{% url 'accounts:update_profile' pk=user.profile.pk %}">{% trans 'Change profile!' %}</a>
+        <a class="logout" href="{% url 'accounts:logout' %}">{% trans 'Logout!' %}</a>
+        <hr>
+        <div class="reg-form mb-3 form-label reg-form__input">
+            <h1>{% trans 'Account info' %}</h1>
+            <hr>
+            {% if user.is_authenticated %}
+                {% if user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.url }}">
+                {% else %}
+                    {% trans 'No avatar!' %}
+                {% endif %}
+                <h2>{% trans 'Detail:' %}</h2>
+                <p></p>
+                <ul>
+                    <p><li>{% trans 'Username:' %} {{ user.username }}</li></p>
+                    <p><li>{% trans 'Email:' %} {{ user.email }}</li></p>
+                    <p><li>{% trans 'Bio:' %} {{ user.profile.bio }}</li></p>
+                    <p><li>{% trans 'Your balance:' %} {{ user.profile.balance }}</li></p>
+                </ul>
+                <hr>
+                <a class="right" style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;"
+                   href="{% url 'shop:category' %}">{% trans 'Go to Shop!' %}</a>
+                <a style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;"
+                   href="{% url 'accounts:update_balance' pk=user.profile.pk %}">{% trans 'Balance UP!' %}</a>
+                <hr>
+            {% else %}
+                {% trans 'User not authenticated!' %}
+            {% endif %}
+            <a class="right" style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;"
+               href="{% url 'orders:orders_history' %}">{% trans 'Order history!' %}</a>
+            <a style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;"
+               href="{% url 'accounts:my_reviews' %}">{% trans 'My reviews!' %}</a>
+        </div>
+{% endblock %}

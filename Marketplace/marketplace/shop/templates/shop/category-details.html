@@ -1,0 +1,40 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% block title %}
+    {{ category.name }}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(255, 236, 139);
+        }
+        h1 {
+            text-align: center;
+        }
+        .img {
+            margin: 10px auto 20px;
+            display: block;
+        }
+        .right {
+            padding-left: 500px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+        <div class="reg-form mb-3 form-label reg-form__input">
+            <br>
+            <h1>{{ category.name }}</h1>
+            <hr>
+            {% if category.img %}
+                    <img src="{{ category.img.url }}" alt="{{ category.img.url }}" class="img">
+            {% else %}
+                    {% trans 'No image!' %}
+            {% endif %}
+            <hr>
+                <ul>
+                    <a href="{% url 'shop:products' pk=category.pk %}">{% trans 'Go to shop' %}</a>
+                    <a href="{% url 'shop:category' %}" class="right">{% trans 'Back to categoryes' %}</a>
+                </ul>
+                <hr>
+        </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Create review' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(255, 236, 139);
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<font color="#0000FF"><h1>{% trans 'Create new review!' %}</h1></font>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <font color="#0000FF">{{ form.as_p }}</font>
+            <button class="btn btn-success" type="submit">{% trans 'Create review!' %}</button>
+        </form>
+    </div>
+    <p></p>
+    <div>
+        <a style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;"
+           href="{{ request.META.HTTP_REFERER }}">{% trans 'Back to product!' %}</a>
+    </div>
+{% endblock %}

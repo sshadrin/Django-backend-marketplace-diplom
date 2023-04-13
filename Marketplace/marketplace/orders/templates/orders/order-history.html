@@ -1,0 +1,35 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% load cache %}
+{% block title %}
+    {% trans 'Order history' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(80, 200, 120);
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="reg-form mb-3 form-label reg-form__input">
+        <br>
+        <h1>{% trans 'Order history:' %}</h1>
+        <hr>
+        <br>
+            <ul>
+                {% for i in history %}
+                    {% if request.user == i.user %}
+                        <li>{% trans 'Product:' %} {{ i.products }}</li>
+                        <li>{% trans 'Price:' %} {{ i.price }}</li>
+                        <li>{% trans 'Quantity:' %} {{ i.quantity }}</li>
+                        <li>{% trans 'Order:' %} <a href="{% url 'orders:orders_detail' pk=i.order.pk %}">{% trans 'Order details' %}</a></li>
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+                <a href="{% url 'accounts:main' %}" style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;">
+                    {% trans 'Back to accounts' %}</a>
+            </ul>
+    </div>
+{% endblock %}

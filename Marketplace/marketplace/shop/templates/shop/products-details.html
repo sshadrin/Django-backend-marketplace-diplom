@@ -1,0 +1,45 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(255, 236, 139);
+        }
+        h1 {
+            text-align: center;
+        }
+        .right {
+            margin-right: 500px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+        <div class="reg-form mb-3 form-label reg-form__input">
+            <br>
+            <h1>{{ product.name }}</h1>
+            <hr>
+            <h5>{% trans 'Description:' %} {{ product.description }}</h5>
+            <hr>
+            <h5>{% trans 'Discount:' %} {{ product.discount }}</h5>
+            <hr>
+            <h5>{% trans 'Price:' %} {{ product.price }}$</h5>
+            <hr>
+            <h5>{% trans 'Stock:' %} {{ product.stock }}</h5>
+            <hr>
+            <h5>{% trans 'Sale count:' %} {{ product.sale_count }}</h5>
+            <hr>
+            <h5>{% trans 'Total price:' %} {{ product.total_price }}$</h5>
+            <hr>
+            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-success" value="Add to cart">
+            </form>
+            <hr>
+            <a class="right" href="{% url 'shop:category' %}" class="right">{% trans 'Back to shop' %}</a>
+            <a href="{% url 'shop:products_review' pk=product.pk %}">{% trans 'Create new review!' %}</a>
+        </div>
+{% endblock %}

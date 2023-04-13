@@ -1,0 +1,39 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Shop category' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(255, 236, 139);
+            text-align: center;
+        }
+        .right {
+            margin-right: 200px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+        <div class="reg-form mb-3 form-label reg-form__input">
+            <br>
+            <h1>{% trans 'Choose Category:' %}</h1>
+            <hr>
+            <br>
+                <ul>
+                    <a class="right" style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;" href="{% url 'shop:populars' %}">{% trans 'Most popular products!' %}</a>
+                    <a style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;"
+                       href="{% url 'shop:promotion' %}">{% trans 'Products for the promotion!' %}</a>
+                    <br>
+                    <hr>
+                    {% for name in categoryes %}
+                        <li><a style="color: blue; padding: 3px;"
+                                href="{% url 'shop:category_details' pk=name.pk %}">{{ name.name }}</a></li>
+                        <br>
+                    {% endfor %}
+                    <hr>
+                </ul>
+            <a style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;"
+               href="{% url 'shop:reviews' %}">{% trans 'Our reviews' %}</a>
+        </div>
+{% endblock %}

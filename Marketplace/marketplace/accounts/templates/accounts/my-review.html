@@ -1,0 +1,33 @@
+{% extends 'accounts/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Order history' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(80, 200, 120);
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="reg-form mb-3 form-label reg-form__input">
+        <br>
+        <h1>{% trans 'My review history:' %}</h1>
+        <hr>
+        <br>
+            <ul>
+                {% for i in reviews %}
+                    {% if request.user == i.user %}
+                        <li>{% trans 'Product:' %} {{ i.products }}</li>
+                        <li>{% trans 'Review:' %} {{ i.review }}</li>
+                        <li>{% trans 'Created_ad:' %} {{ i.created_ad }}</li>
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+                <a href="{% url 'accounts:main' %}" style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;">
+                    {% trans 'Back to accounts' %}</a>
+            </ul>
+    </div>
+{% endblock %}

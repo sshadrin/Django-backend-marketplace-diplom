@@ -1,0 +1,34 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Popular Products' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(255, 236, 139);
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+        <div class="reg-form mb-3 form-label reg-form__input">
+            <br>
+            <h1>{% trans 'Choose popular Product:' %}</h1>
+            <hr>
+            <ul>
+            {% for i in populars %}
+                {% if i.id == 2 or i.id == 4 or i.id == 8 or i.id == 10 or i.id == 13 %}
+                    <li><a href="{% url 'shop:products_details' pk=i.pk %}">{{ i.name }}</a>
+                    {% if i.image %}
+                        <img src="{{ i.image.url }}" alt="{{ i.image.url }}"></li>
+                    <hr>
+                    {% else %}
+                        {% trans 'No image!' %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </ul>
+            <a href="{% url 'shop:category' %}" class="right">{% trans 'Back to shop' %}</a>
+        </div>
+{% endblock %}

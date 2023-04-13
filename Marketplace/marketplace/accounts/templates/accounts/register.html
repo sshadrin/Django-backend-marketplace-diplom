@@ -1,0 +1,18 @@
+{% extends 'accounts/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Register account' %}
+{% endblock %}
+{% block body %}
+    <h1 class="reg-form">{% trans 'Register your account' %}</h1>
+    <form class="reg-form" method="post">
+        {% csrf_token %}
+        <hr>
+        <div class="mb-3 form-label reg-form__input">
+            {{ form.as_p }}
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-success" type="submit" value="Register">
+        </div>
+    </form>
+{% endblock %}

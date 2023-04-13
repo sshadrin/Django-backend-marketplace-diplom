@@ -1,0 +1,56 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Your shopping cart' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(255, 236, 139);
+            text-align: center;
+        }
+        .right {
+            text-align: right;
+            margin-right: 400px;
+        }
+        .left {
+            text-align: left;
+            margin-left: 400px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="reg-form mb-3 form-label reg-form__input">
+    <h1>{% trans 'Your shopping cart' %}</h1>
+    <hr>
+    {% for item in cart %}
+        {% with product=item.product %}
+            <ul>
+                {% if product.image %}
+                <li>{% trans 'Image:' %} <img src="{{ product.image.url }}"></li>
+                <hr>
+                {% else %}
+                {% trans 'No image!' %}
+                {% endif %}
+                <li>{% trans 'Product:' %} {{ product.name }}</li>
+                <hr>
+                <li>{% trans 'Quantity:' %} {{ item.quantity }}</li>
+                <hr>
+                <li>{% trans 'Price:' %} {{ item.price }}$</li>
+                <hr>
+                <li>{% trans 'Total:' %} {{ item.total }}$</li>
+                <hr>
+                <li><a href="{% url 'cart:cart_remove' product.id %}">{% trans 'Remove product from cart' %}</a></li>
+                <hr>
+            </ul>
+        {% endwith %}
+    {% endfor %}
+    <div><h2>{% trans 'The full cost of the cart:' %} {{ cart.get_total }}$</h2> </div>
+    <hr>
+</div>
+<div>
+    <h3 class="left"><a href="{% url 'orders:orders_create' %}"
+                        style="background-color: #6A5ACD; color: #E0FFFF; padding: 5px;" class="button">{% trans 'Buy' %}</a></h3>
+    <h5 class="right"><a href="{% url 'shop:category' %}"  class="button light">{% trans 'Continue shopping' %}</a></h5>
+</div>
+{% endblock %}

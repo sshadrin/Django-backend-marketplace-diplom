@@ -1,0 +1,31 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Order detail' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(80, 200, 120);
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+        <div class="reg-form mb-3 form-label reg-form__input">
+            <br>
+            <h1>{% trans 'Order details' %}</h1>
+            <hr>
+            <h5>{% trans 'Email:' %} {{ orders.email }}$</h5>
+            <hr>
+            <h5>{% trans 'Delivery_adress:' %} {{ orders.delivery_adress }}</h5>
+            <hr>
+            <h5>{% trans 'Promocode:' %} {{ orders.promocode }}</h5>
+            <hr>
+            <h5>{% trans 'Create:' %} {{ orders.created_ad }}</h5>
+            <hr>
+            <a href="{{ request.META.HTTP_REFERER }}">{% trans 'Back to history' %}</a>
+        </div>
+{% endblock %}

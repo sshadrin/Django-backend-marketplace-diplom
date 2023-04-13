@@ -1,0 +1,35 @@
+{% extends 'accounts/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Update profile' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+        background-color: rgb(80, 200, 120);
+        text-align: center;
+        }
+        .right {
+            margin-right: 550px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="reg-form mb-3 form-label reg-form__input">
+    <h1>{% trans 'Change profile!' %}</h1>
+    <hr>
+    <div>
+        <form class="reg-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <font color="#0000FF">{{ form.as_p }}</font>
+            <button class="btn btn-success" type="submit">{% trans 'Save!' %}</button>
+        </form>
+    </div>
+    <p></p>
+    <div>
+        <a style="background-color: #6A5ACD; color: #E0FFFF; padding: 3px;"
+           href="{% url 'accounts:main' %}">{% trans 'Back to main' %}</a>
+    </div>
+    <hr>
+</div>
+{% endblock %}

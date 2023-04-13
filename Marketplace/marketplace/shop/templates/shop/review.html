@@ -1,0 +1,33 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Reviews' %}
+{% endblock %}
+{% block head %}
+    <style>
+        html, body {
+            background-color: rgb(255, 236, 139);
+            text-align: center;
+        }
+        .right {
+            margin-right: 350px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+        <div class="reg-form mb-3 form-label reg-form__input">
+            <br>
+            <h1>{% trans 'All reviews:' %}</h1>
+            <hr>
+            <ul>
+                {% for i in review %}
+                    <li>{{ i.products }}</li>
+                    <li>{{ i.review }}</li>
+                    <li>{{ i.user }}</li>
+                    <li>{{ i.created_ad }}</li>
+                <hr>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'shop:category' %}" class="right">{% trans 'Back to categoryes' %}</a>
+        </div>
+{% endblock %}
